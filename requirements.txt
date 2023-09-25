@@ -1,0 +1,11 @@
+# Cheminformatics
+rdkit
+prolif
+datamol
+#openbabel
+
+# Data
+pandas
+seaborn
+matplotlib
+numpy

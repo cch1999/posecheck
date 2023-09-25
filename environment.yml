@@ -1,0 +1,16 @@
+name: posecheck
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - openbabel
+  - pip:
+    - pandas
+    - seaborn
+    - matplotlib
+    - rdkit
+    - datamol
+    - prolif
+    - tqdm
+
+
