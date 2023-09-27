@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="">
-    <img src="notebooks/figs/posecheck_logo_long.png" width="800"/>
+    <img src="data/posecheck_logo.png" width="800"/>
   </a>
 </p>
 
