@@ -6,8 +6,6 @@
   </a>
 </p>
 
- [Paper](https://arxiv.org/abs/2308.07413) | Documentation [WIP]
-
 ## What is PoseCheck?
 
 PoseCheck is a package for analysing the quality of generated protein-ligand complexes from 3D target-condtioned generative models.
