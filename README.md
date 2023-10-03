@@ -76,21 +76,7 @@ print(f"Interactions of example molecule: {interactions}")
 
 - Reading and processing all the PDB files using `reduce` can take a while for a large test set. If you are running `PoseCheck` frequently, it might be worth pre-processing all proteins yourself using `prot = posecheck.utils.loading.load_protein_from_pdb(pdb_path)` and setting this directly within `PoseCheck` using `pc.protein = prot`.
 
-## Data from the paper
 
-WIP!
-
-
-## Cite
-
-```bibtex
-@article{harris2023benchmarking,
-  title={Benchmarking Generated Poses: How Rational is Structure-based Drug Design with Generative Models?},
-  author={Harris, Charles and Didi, Kieran and Jamasb, Arian R and Joshi, Chaitanya K and Mathis, Simon V and Lio, Pietro and Blundell, Tom},
-  journal={arXiv preprint arXiv:2308.07413},
-  year={2023}
-}
-```
 
 ## Acknowledgements
 
