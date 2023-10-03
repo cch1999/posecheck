@@ -23,7 +23,7 @@ PoseCheck is a package for analysing the quality of generated protein-ligand com
 ## Installation
 
 ```bash
-git clone https://github.com/cch1999/posecheck.git
+git clone #link to this anon repo
 cd posecheck
 
 pip install -e .
