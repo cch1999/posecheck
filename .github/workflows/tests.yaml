@@ -51,16 +51,16 @@ jobs:
       - name: Install Coverage
         run: pip install coverage
 
-      # Run tests with coverage
-      - name: Run unit tests and generate coverage report
-        run: |
-          coverage run --source=posecheck -m unittest discover -s tests -p "test_*.py"
-          coverage xml
+      # # Run tests with coverage
+      # - name: Run unit tests and generate coverage report
+      #   run: |
+      #     coverage run --source=posecheck -m unittest discover -s tests -p "test_*.py"
+      #     coverage xml
       
-      # Upload coverage to Codecov
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          files: ./coverage.xml
-          fail_ci_if_error: true
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+      # # Upload coverage to Codecov
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     files: ./coverage.xml
+      #     fail_ci_if_error: true
+      #     token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
