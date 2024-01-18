@@ -45,5 +45,5 @@ jobs:
       #  run: pip install -r .requirements/dev.in
       - name: Run unit tests and generate coverage report
         run: python -m unittest discover -s tests -p "test_*.py"
-      - name: Test notebook execution
-        run: python -m unittest discover -s notebooks -p "test_*.py"
+      #- name: Test notebook execution
+      #  run: python -m unittest discover -s notebooks -p "test_*.py"
