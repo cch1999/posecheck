@@ -1,5 +1,9 @@
 # PoseCheck: Benchmarking Generated Poses
 
+[![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
+[![build](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml)
+
 <p align="center">
   <a href="">
     <img src="data/posecheck_logo.png" width="800"/>
@@ -78,7 +82,9 @@ print(f"Interactions of example molecule: {interactions}")
 
 ## Data from the paper
 
-WIP!
+
+The data for the paper can be found at the following Zenodo link:
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10208912.svg)](https://doi.org/10.5281/zenodo.10208912)
 
 
 ## Cite
