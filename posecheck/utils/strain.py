@@ -11,7 +11,7 @@ def calculate_energy(
     mol: Chem.Mol, forcefield: str = "UFF", add_hs: bool = True
 ) -> float:
     """
-    Calculates the energy of a molecule using a force field.
+    Evaluates the energy of a molecule using a force field.
 
     Args:
         mol: RDKit Mol object representing the molecule.
@@ -19,7 +19,7 @@ def calculate_energy(
         add_hs: Whether to add hydrogens to the molecule (default: True).
 
     Returns:
-        energy: Calculated energy of the molecule (rounded to 2 decimal places).
+        energy: Calculated energy of the molecule.
                 Returns NaN if energy calculation fails.
     """
     mol = Chem.Mol(mol)  # Make a deep copy of the molecule
@@ -34,7 +34,7 @@ def calculate_energy(
 
     energy = ff.CalcEnergy()
 
-    return round(energy, 2)
+    return energy
 
 
 def relax_constrained(
@@ -74,7 +74,8 @@ def relax_constrained(
         None
         
 def relax_global(mol: Chem.Mol) -> Chem.Mol:
-    """Relax a molecule by adding hydrogens, embedding it, and optimizing it.
+    """Relax a molecule by adding hydrogens, embedding it, and optimizing it
+    using the UFF force field.
 
     Args:
         mol (Chem.Mol): The molecule to relax.
@@ -106,7 +107,7 @@ def relax_global(mol: Chem.Mol) -> Chem.Mol:
     # return the molecule
     return mol
         
-def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.01, num_confs: int = 50) -> float:
+def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.1, num_confs: int = 50) -> float:
     """Calculate the strain energy of a molecule.
     
     In order to evaluate the global strain energy of a molecule, rather than local imperfections
@@ -115,7 +116,7 @@ def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.01, num_confs: in
 
     Args:
         mol (Chem.Mol): The molecule to calculate the strain energy for.
-        maxDispl (float): The maximum displacement for position constraints during local relaxation.
+        maxDispl (float): The maximum displacement for position constraints during local relaxation. (Default: 0.1)
         num_confs (int): The number of conformers to generate for global relaxation.
 
     Returns:
@@ -123,7 +124,7 @@ def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.01, num_confs: in
     """
     try:
         # relax molecule enforcing constraints on the atom positions
-        locally_relaxed = relax_constrained(mol, maxDispl=0.1)
+        locally_relaxed = relax_constrained(mol, maxDispl=maxDispl)
         # sample and minimize n conformers 
         global_relaxed = [relax_global(mol) for i in range(num_confs)]
             
@@ -133,6 +134,7 @@ def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.01, num_confs: in
         # calculate the energy of the globally relaxed molecules and take the minimum
         global_energy = min([calculate_energy(mol) for mol in global_relaxed])
         
+        # calculate the strain energy
         strain_energy = local_energy - global_energy
         
         return strain_energy
