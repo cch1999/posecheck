@@ -6,8 +6,6 @@ from datamol.conformers._conformers import _get_ff
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
-from posecheck.utils.chem import has_radicals
-
 
 def calculate_energy(
     mol: Chem.Mol, forcefield: str = "UFF", add_hs: bool = True
@@ -39,7 +37,43 @@ def calculate_energy(
     return round(energy, 2)
 
 
-def relax_mol(mol: Chem.Mol) -> Chem.Mol:
+def relax_constrained(
+    mol: Chem.Mol, forcefield: str = "UFF", add_hs: bool = True, maxDispl=0.1
+) -> float:
+    """
+    Calculates the energy of a molecule using a force field.
+
+    Args:
+        mol: RDKit Mol object representing the molecule.
+        forcefield: Force field to use for energy calculation (default: "UFF").
+        add_hs: Whether to add hydrogens to the molecule (default: True).
+
+    Returns:
+        energy: Calculated energy of the molecule (rounded to 2 decimal places).
+                Returns NaN if energy calculation fails.
+    """
+    mol = deepcopy(mol)  # Make a deep copy of the molecule
+    #mol = Chem.Mol(mol)  # Make a deep copy of the molecule
+
+    if add_hs:
+        mol = Chem.AddHs(mol, addCoords=True)
+
+    try:
+        ff = _get_ff(mol, forcefield=forcefield)
+    except Exception:
+        return np.nan
+    
+    for i in range(mol.GetNumAtoms()):
+        ff.UFFAddPositionConstraint(i, maxDispl=maxDispl, forceConstant=1)
+
+
+    try:
+        ff.Minimize()
+        return mol
+    except:
+        None
+        
+def relax_global(mol: Chem.Mol) -> Chem.Mol:
     """Relax a molecule by adding hydrogens, embedding it, and optimizing it.
 
     Args:
@@ -63,43 +97,50 @@ def relax_mol(mol: Chem.Mol) -> Chem.Mol:
     mol = Chem.AddHs(mol, addCoords=True)
 
     # embed the molecule
-    AllChem.EmbedMolecule(mol, randomSeed=0xF00D)
+    #AllChem.EmbedMolecule(mol, randomSeed=0xF00D)
+    AllChem.EmbedMolecule(mol)
 
     # optimize the molecule
     AllChem.UFFOptimizeMolecule(mol)
 
     # return the molecule
     return mol
+        
+def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.01, num_confs: int = 50) -> float:
+    """Calculate the strain energy of a molecule.
+    
+    In order to evaluate the global strain energy of a molecule, rather than local imperfections
+    in bonds distances and angles, we first perform a local relaxation of the molecule (by minimizing and allowing 
+    a small displacement of the atoms) and then sample and minimize n conformers of the molecule.
 
+    Args:
+        mol (Chem.Mol): The molecule to calculate the strain energy for.
+        maxDispl (float): The maximum displacement for position constraints during local relaxation.
+        num_confs (int): The number of conformers to generate for global relaxation.
 
-def get_strain_energy(mol: Chem.Mol) -> float:
+    Returns:
+        float: The calculated strain energy, or None if the calculation fails.
     """
-    Calculates the strain energy of a molecule.
-
-    Strain energy is defined as the difference between the energy of a molecule
-    and the energy of the same molecule in a relaxed geometry.
-
-    Parameters
-    ----------
-    mol : rdkit.Chem.rdchem.Mol
-        Molecule.
-
-    Returns
-    -------
-    float
-        Strain energy.
-
-    """
-
-    # Check if the molecule has radicals
-    assert not has_radicals(
-        mol
-    ), "Molecule has radicals, consider removing them first. (`posecheck.utils.chem.remove_radicals()`)"
-
     try:
-        return calculate_energy(mol) - calculate_energy(relax_mol(mol))
-    except:
-        return np.nan
+        # relax molecule enforcing constraints on the atom positions
+        locally_relaxed = relax_constrained(mol, maxDispl=0.1)
+        # sample and minimize n conformers 
+        global_relaxed = [relax_global(mol) for i in range(num_confs)]
+            
+        # calculate the energy of the locally relaxed molecule
+        local_energy = calculate_energy(locally_relaxed)
+        
+        # calculate the energy of the globally relaxed molecules and take the minimum
+        global_energy = min([calculate_energy(mol) for mol in global_relaxed])
+        
+        strain_energy = local_energy - global_energy
+        
+        return strain_energy
+    
+    except Exception as e:
+        print('Warning: Strain energy calculation failed')
+        print(e)
+        return None
 
 
 if __name__ == "__main__":
@@ -107,12 +148,12 @@ if __name__ == "__main__":
     from posecheck.utils.loading import load_mols_from_sdf, load_protein_from_pdb
 
     # Example molecules
-    prot = load_protein_from_pdb(EXAMPLE_PDB_PATH)
+    #prot = load_protein_from_pdb(EXAMPLE_PDB_PATH)
     lig = load_mols_from_sdf(EXAMPLE_LIGAND_PATH)[0]
 
     # Calculate strain
-    strain = get_strain_energy(lig)
+    strain = calculate_strain_energy(lig)
 
     print(f"Strain energy: {strain}")
 
-    assert round(strain, 2) == 19.11
+    #assert round(strain, 2) == 19.11

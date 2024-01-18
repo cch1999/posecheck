@@ -10,7 +10,7 @@ from posecheck.utils.clashes import count_clashes
 from posecheck.utils.interactions import generate_interaction_df
 from posecheck.utils.loading import (load_mols_from_rdkit, load_mols_from_sdf,
                                load_protein_from_pdb, read_pdbqt)
-from posecheck.utils.strain import get_strain_energy
+from posecheck.utils.strain import calculate_strain_energy
 
 
 class PoseCheck(object):
@@ -113,7 +113,7 @@ class PoseCheck(object):
 
     def calculate_strain_energy(self) -> float:
         """Calculate the strain energy of the ligand."""
-        return [get_strain_energy(mol) for mol in self.ligands]
+        return [calculate_strain_energy(mol) for mol in self.ligands]
 
     def calculate_interactions(self) -> pd.DataFrame:
         """Calculate the interactions between the protein and the ligand."""
