@@ -1,6 +1,8 @@
 # PoseCheck: Benchmarking Generated Poses
 
+
 [![arXiv](https://img.shields.io/badge/arXiv-2308.07413-b31b1b.svg)](https://arxiv.org/abs/2308.07413)
+![version](https://img.shields.io/badge/version-1.1-blue)
 [![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10_%7C_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![build](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
