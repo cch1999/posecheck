@@ -1,0 +1,66 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - "README.md"
+      - "docs/**"
+
+  pull_request:
+    paths-ignore:
+      - "README.md"
+      - "docs/*"
+
+jobs:
+  build_cpu:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, "3.10", "3.11"]
+        #torch: [1.12.0, 1.13.0, 2.0.0]
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      # Setup environment (conda, dependencies, etc.)
+      - name: Setup miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          auto-update-conda: true
+          miniforge-variant: Mambaforge
+          channels: "conda-forge, pytorch"
+          python-version: ${{ matrix['python-version'] }}
+          use-mamba: true
+      
+      #- name: Install PyTorch
+      #  run: mamba install -c pytorch pytorch==${{matrix.torch}} cpuonly
+      
+      - name: Install Extras
+        run: pip install -r requirements.txt
+      
+      - name: Install OpenBabel
+        run: mamba install -c conda-forge openbabel
+      
+      - name: Install reduce
+        run: mamba install -c speleo3 reduce
+      
+      # Install coverage tool
+      - name: Install Coverage
+        run: pip install coverage
+
+      # # Run tests with coverage
+      # - name: Run unit tests and generate coverage report
+      #   run: |
+      #     coverage run --source=posecheck -m unittest discover -s tests -p "test_*.py"
+      #     coverage xml
+      
+      # # Upload coverage to Codecov
+      # - name: Upload coverage to Codecov
+      #   uses: codecov/codecov-action@v2
+      #   with:
+      #     files: ./coverage.xml
+      #     fail_ci_if_error: true
+      #     token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos

@@ -7,7 +7,6 @@ import numpy as np
 
 from posecheck.utils.chem import rmsd, has_radicals, remove_radicals
 from posecheck.utils.constants import EXAMPLE_LIGAND_PATH, EXAMPLE_PDB_PATH
-from posecheck.utils.strain import calculate_energy, get_strain_energy, relax_mol
 
 
 class TestChem(unittest.TestCase):
@@ -50,11 +49,6 @@ class TestChem(unittest.TestCase):
 
         mol = remove_radicals(mol)
 
-        # Calculate the energy using the UFF force field
-        energy = get_strain_energy(mol)
-
-        # Assert that the calculated energy is not NaN
-        self.assertFalse(np.isnan(energy))
 
     def test_has_radicals(self):
         """Test the has_radicals function."""

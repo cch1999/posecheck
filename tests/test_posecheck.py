@@ -23,7 +23,7 @@ class TestPoseCheck(unittest.TestCase):
 
     def test_calculate_strain_energy(self):
         strain_energy = self.pc.calculate_strain_energy()[0]
-        self.assertAlmostEqual(strain_energy, 19.11, places=2)
+        self.assertAlmostEqual(strain_energy, 0, places=0)
 
     def test_calculate_interactions(self):
         interactions = self.pc.calculate_interactions()

@@ -1,5 +1,13 @@
 # PoseCheck: Benchmarking Generated Poses
 
+
+[![arXiv](https://img.shields.io/badge/arXiv-2308.07413-b31b1b.svg)](https://arxiv.org/abs/2308.07413)
+![version](https://img.shields.io/badge/version-1.1-blue)
+[![python](https://img.shields.io/badge/-Python_3.8_%7C_3.9_%7C_3.10_%7C_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![build](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 <p align="center">
   <a href="">
     <img src="data/posecheck_logo.png" width="800"/>
@@ -78,7 +86,10 @@ print(f"Interactions of example molecule: {interactions}")
 
 ## Data from the paper
 
-WIP!
+
+The data for the paper can be found at the following Zenodo link and place in the `data` directory.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10208912.svg)](https://doi.org/10.5281/zenodo.10208912)
 
 
 ## Cite
