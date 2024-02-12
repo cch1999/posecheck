@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="posecheck",
-    version="0.1",
+    version="1.1",
     description="A library for pose estimation benchmarks",
     author="Charles Harris",
     author_email="cch57@cam.ac.uk",
