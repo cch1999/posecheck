@@ -63,7 +63,7 @@ pc.load_protein_from_pdb("data/examples/1a2g.pdb")
 # Load ligands from an SDF file
 pc.load_ligands_from_sdf("data/examples/1a2g_ligand.sdf")
 # Alternatively, load RDKit molecules directly
-# pc.load_ligands_from_mol(rdmol)
+# pc.load_ligands_from_mols([rdmol])
 
 # Check for clashes
 clashes = pc.calculate_clashes()
