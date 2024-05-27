@@ -5,7 +5,7 @@ datamol
 #openbabel
 
 # Data
-pandas
+pandas==2.0.0
 seaborn
 matplotlib
 numpy
