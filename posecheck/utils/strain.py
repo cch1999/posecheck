@@ -32,7 +32,10 @@ def calculate_energy(
     except Exception:
         return np.nan
 
-    energy = ff.CalcEnergy()
+    try:
+        energy = ff.CalcEnergy()
+    except:
+        return np.nan
 
     return energy
 
@@ -64,7 +67,7 @@ def relax_constrained(
         return np.nan
     
     for i in range(mol.GetNumAtoms()):
-        ff.UFFAddPositionConstraint(i, maxDispl=maxDispl, forceConstant=1)
+        ff.UFFAddPositionConstraint(i, maxDispl=maxDispl, forceConstant=1.0e5)
 
 
     try:
@@ -102,9 +105,44 @@ def relax_global(mol: Chem.Mol) -> Chem.Mol:
     AllChem.EmbedMolecule(mol)
 
     # optimize the molecule
-    AllChem.UFFOptimizeMolecule(mol)
+    try:
+        AllChem.UFFOptimizeMolecule(mol)
+    except:
+        return None
 
     # return the molecule
+    return mol
+
+def relax_global_on_pose(mol: Chem.Mol) -> Chem.Mol:
+    """Relax the given pose without position constraints by adding hydrogens and optimizing it
+    using the UFF force field.
+
+    Args:
+        mol (Chem.Mol): The molecule to relax.
+
+    Returns:
+        Chem.Mol: The relaxed molecule.
+    """
+
+    # if the molecule is None, return None
+    if mol is None:
+        return None
+
+    # Incase ring info is not present
+    Chem.GetSSSR(mol)  # SSSR: Smallest Set of Smallest Rings
+
+    # make a copy of the molecule
+    mol = deepcopy(mol)
+
+    # add hydrogens
+    mol = Chem.AddHs(mol, addCoords=True)
+
+    # optimize the molecule
+    try:
+        AllChem.UFFOptimizeMolecule(mol)
+    except:
+        return None
+
     return mol
         
 def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.1, num_confs: int = 50) -> float:
@@ -127,12 +165,14 @@ def calculate_strain_energy(mol: Chem.Mol, maxDispl: float = 0.1, num_confs: int
         locally_relaxed = relax_constrained(mol, maxDispl=maxDispl)
         # sample and minimize n conformers 
         global_relaxed = [relax_global(mol) for i in range(num_confs)]
+        # alleviate insufficient sampling
+        global_relaxed.append(relax_global_on_pose(mol))
             
         # calculate the energy of the locally relaxed molecule
         local_energy = calculate_energy(locally_relaxed)
         
         # calculate the energy of the globally relaxed molecules and take the minimum
-        global_energy = min([calculate_energy(mol) for mol in global_relaxed])
+        global_energy = min([calculate_energy(mol) for mol in global_relaxed if mol is not None])
         
         # calculate the strain energy
         strain_energy = local_energy - global_energy
