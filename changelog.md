@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2] - 25-07-2024
+
+### Changed
+- Change the force constant to 1.0e5 to ensure that the position constraint added in strain energy calculation is correctly implemented.
+- Add another relaxation on the given pose to ensure that strain energy is always positive.
+- Dropped support for python 3.8
+
+### Fixed
+- Pin the pandas version to avoid environment issues.
+
 ## [1.1] - 18-01-2024
 
 ### Changed
