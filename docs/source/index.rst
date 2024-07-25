@@ -36,6 +36,7 @@ Getting Started
 We provide a simple top level API to easily interact with the whole of the benchmark. Just define the `PoseCheck` object once at the top of your existing testing code and test molecules by loading them in iteratively. You can also use all the testing functions manually as well (see Docs for more info).
 
 ::
+
    from posecheck import PoseCheck
 
    # Initialize the PoseCheck object
@@ -66,6 +67,7 @@ Citation
 ===============
 
 :: 
+   
    @article{harris2023benchmarking,
   title={Benchmarking Generated Poses: How Rational is Structure-based Drug Design with Generative Models?},
   author={Harris, Charles and Didi, Kieran and Jamasb, Arian R and Joshi, Chaitanya K and Mathis, Simon V and Lio, Pietro and Blundell, Tom},
