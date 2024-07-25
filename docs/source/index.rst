@@ -10,7 +10,6 @@ PoseCheck Documentation
 **Warning: this documentation is WIP**
 
 .. image:: posecheck_logo.png
-   :width: 100px
    :align: center
 
 
@@ -67,7 +66,7 @@ Citation
 ===============
 
 :: 
-   
+
    @article{harris2023benchmarking,
   title={Benchmarking Generated Poses: How Rational is Structure-based Drug Design with Generative Models?},
   author={Harris, Charles and Didi, Kieran and Jamasb, Arian R and Joshi, Chaitanya K and Mathis, Simon V and Lio, Pietro and Blundell, Tom},
