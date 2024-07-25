@@ -18,7 +18,7 @@
 
 ## What is PoseCheck?
 
-PoseCheck is a package for analysing the quality of generated protein-ligand complexes from 3D target-condtioned generative models.
+PoseCheck is a package for analysing the quality of generated protein-ligand complexes from 3D target-conditioned generative models.
 
 <!-- # ## Why use PoseCheck?
 #
@@ -47,9 +47,9 @@ Optional
 conda install -c conda-forge openbabel
 ```
 
-## Example useage
+## Example usage
 
-We provide a simple top level API to easily interact with the whole of the benchmark. Just define the `PoseCheck` object once at the top of your existing testing code and test molecules by loading them in iteratively. You can also use all the testing fuctions manually as well (see Docs for more info).
+We provide a simple top level API to easily interact with the whole of the benchmark. Just define the `PoseCheck` object once at the top of your existing testing code and test molecules by loading them in iteratively. You can also use all the testing functions manually as well (see Docs for more info).
 
 ```python
 from posecheck import PoseCheck
@@ -63,7 +63,7 @@ pc.load_protein_from_pdb("data/examples/1a2g.pdb")
 # Load ligands from an SDF file
 pc.load_ligands_from_sdf("data/examples/1a2g_ligand.sdf")
 # Alternatively, load RDKit molecules directly
-# pc.load_ligands_from_mol(rdmol)
+# pc.load_ligands_from_mols([rdmol])
 
 # Check for clashes
 clashes = pc.calculate_clashes()
@@ -71,7 +71,7 @@ print(f"Number of clashes in example molecule: {clashes[0]}")
 
 # Check for strain
 strain = pc.calculate_strain_energy()
-print(f"Strain energ of example moleculey: {strain[0]}")
+print(f"Strain energy of example molecule: {strain[0]}")
 
 # Check for interactions
 interactions = pc.calculate_interactions()
@@ -87,7 +87,7 @@ print(f"Interactions of example molecule: {interactions}")
 ## Data from the paper
 
 
-The data for the paper can be found at the following Zenodo link and place in the `data` directory.
+The data for the paper can be found at the following Zenodo link and should be placed in the `data` directory.
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10208912.svg)](https://doi.org/10.5281/zenodo.10208912)
 
