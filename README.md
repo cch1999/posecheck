@@ -14,7 +14,7 @@
   </a>
 </p>
 
- [Paper](https://arxiv.org/abs/2308.07413) | Documentation [WIP]
+ [Paper](https://arxiv.org/abs/2308.07413) | [Documentation](https://posecheck.readthedocs.io/en/latest/)
 
 ## What is PoseCheck?
 
