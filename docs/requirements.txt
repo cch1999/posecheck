@@ -1,0 +1,14 @@
+# Defining the exact version will make sure things don't break
+sphinx==7.2.6
+sphinx_rtd_theme==2.0.0
+readthedocs-sphinx-search==0.3.2
+myst-parser==2.0.0
+mpytools>=0.0.9
+numpy
+matplotlib
+plotly
+ase
+rdkit
+py3Dmol
+IPython
+kaleido
