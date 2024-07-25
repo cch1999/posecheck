@@ -5,6 +5,7 @@
 ![version](https://img.shields.io/badge/version-1.2-blue)
 [![python](https://img.shields.io/badge/-Python_3.9_%7C_3.10_%7C_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![build](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml)
+[![Documentation Status](https://readthedocs.org/projects/posecheck/badge/?version=latest)](https://posecheck.readthedocs.io/en/latest/?badge=latest)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
