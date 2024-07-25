@@ -9,7 +9,7 @@ PoseCheck Documentation
 
 **Warning: this documentation is WIP**
 
-.. image:: _static/posecheck_logo.png
+.. image:: posecheck_logo.png
    :width: 100px
    :align: center
 
