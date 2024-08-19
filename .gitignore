@@ -3,3 +3,4 @@
 posecheck/__pycache__/*.pyc
 */*/__pycache__/
 .vscode/*
+.DS_Store
