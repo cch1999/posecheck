@@ -6,7 +6,7 @@ from typing import List, Union
 
 import datamol as dm
 import MDAnalysis as mda
-import openbabel as ob
+#import openbabel as ob
 import prolif as plf
 import rdkit.Chem as Chem
 from rdkit import Chem
@@ -91,25 +91,25 @@ def load_protein_from_pdb(pdb_path: str, reduce_path: str = REDUCE_PATH):
     return prot
 
 
-def get_pdbqt_mol(pdbqt_block: str) -> Chem.Mol:
-    """Convert pdbqt block to rdkit mol by converting with openbabel"""
-    # write pdbqt file
-    with open("test_pdbqt.pdbqt", "w") as f:
-        f.write(pdbqt_block)
+# def get_pdbqt_mol(pdbqt_block: str) -> Chem.Mol:
+#     """Convert pdbqt block to rdkit mol by converting with openbabel"""
+#     # write pdbqt file
+#     with open("test_pdbqt.pdbqt", "w") as f:
+#         f.write(pdbqt_block)
 
-    # read pdbqt file from autodock
-    mol = ob.OBMol()
-    obConversion = ob.OBConversion()
-    obConversion.SetInAndOutFormats("pdbqt", "pdb")
-    obConversion.ReadFile(mol, "test_pdbqt.pdbqt")
+#     # read pdbqt file from autodock
+#     mol = ob.OBMol()
+#     obConversion = ob.OBConversion()
+#     obConversion.SetInAndOutFormats("pdbqt", "pdb")
+#     obConversion.ReadFile(mol, "test_pdbqt.pdbqt")
 
-    # convert to RDKIT
-    mol = Chem.MolFromPDBBlock(obConversion.WriteString(mol))
+#     # convert to RDKIT
+#     mol = Chem.MolFromPDBBlock(obConversion.WriteString(mol))
 
-    # remove tmp file
-    os.remove("test_pdbqt.pdbqt")
+#     # remove tmp file
+#     os.remove("test_pdbqt.pdbqt")
 
-    return mol
+#     return mol
 
 
 def read_pdbqt(pdbqt_file: str) -> Chem.Mol:

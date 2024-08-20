@@ -41,8 +41,8 @@ jobs:
       - name: Install Extras
         run: pip install -r requirements.txt
       
-      - name: Install OpenBabel
-        run: mamba install -c conda-forge openbabel
+      # - name: Install OpenBabel
+      #   run: mamba install -c conda-forge openbabel
       
       # - name: Install reduce
       #   run: mamba install -c speleo3 reduce

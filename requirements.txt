@@ -2,7 +2,6 @@
 rdkit
 prolif
 datamol
-#openbabel
 hydride
 biopython
 
