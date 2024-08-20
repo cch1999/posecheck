@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.3] - 20-08-2024
+
+### Changed
+- Changed protonation script from `reduce` to `hydride` to make app dependencies pip installable
+
 ## [1.2] - 25-07-2024
 
 ### Changed
