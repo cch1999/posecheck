@@ -3,6 +3,7 @@ rdkit
 prolif
 datamol
 #openbabel
+hydride
 
 # Data
 pandas==2.0.0
