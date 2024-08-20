@@ -77,6 +77,20 @@ def reorder_ids(structure: Structure) -> Structure:
     return structure
 
 
+def remove_connect_lines(pdb_path):
+    """
+    Remove CONECT lines from a PDB file.
+    """
+
+    with open(pdb_path, "r") as f:
+        lines = f.readlines()
+    with open(pdb_path, "w") as f:
+        for line in lines:
+            if line.startswith("CONECT"):
+                continue
+            f.write(line)
+
+
 if __name__ == "__main__":
     from posecheck.utils.constants import EXAMPLE_PDB_PATH
     # import temp path 

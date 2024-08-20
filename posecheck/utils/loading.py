@@ -14,7 +14,7 @@ import tempfile
 
 from posecheck.utils.chem import remove_radicals
 from posecheck.utils.constants import REDUCE_PATH, SPLIT_PATH
-from posecheck.utils.biopython import load_biopython_structure, save_biopython_structure, ids_scriptly_increasing, reorder_ids
+from posecheck.utils.biopython import load_biopython_structure, save_biopython_structure, ids_scriptly_increasing, reorder_ids, remove_connect_lines
 
 
 def load_splits_crossdocked(
@@ -78,6 +78,11 @@ def load_protein_from_pdb(pdb_path: str, reduce_path: str = REDUCE_PATH):
         print(out.stdout.decode())
         print(out.stderr.decode())
         raise Exception("Hydrite failed")
+
+    # - Remove CONECT lines from the PDB file - #
+    # This is necessary because the CONECT lines are not handled correctly by MDAnalysis
+    # and they are for some reason added by Hydrite
+    remove_connect_lines(tmp_protonated_path)
 
     # Load the protein from the temporary PDB file
     prot = load_protein_prolif(tmp_protonated_path)
