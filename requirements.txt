@@ -4,6 +4,7 @@ prolif
 datamol
 #openbabel
 hydride
+biopython
 
 # Data
 pandas==2.0.0
