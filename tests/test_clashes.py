@@ -16,15 +16,15 @@ class ClashesTest(unittest.TestCase):
         clashes = count_clashes(self.prot, self.lig)
 
         # Assert that the number of clashes is correct
-        self.assertEqual(clashes, 2)
+        self.assertEqual(clashes, 3)
 
     def test_count_clashes_list(self):
         # Count clashes between protein and ligands
         clashes_list = count_clashes_list(self.prot, [self.lig, self.lig])
 
         # Assert that the number of clashes for each ligand is correct
-        self.assertEqual(clashes_list[0]["clashes"], 2)
-        self.assertEqual(clashes_list[1]["clashes"], 2)
+        self.assertEqual(clashes_list[0]["clashes"], 3)
+        self.assertEqual(clashes_list[1]["clashes"], 3)
 
 
 if __name__ == "__main__":

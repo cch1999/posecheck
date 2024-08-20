@@ -19,7 +19,7 @@ class TestPoseCheck(unittest.TestCase):
 
     def test_calculate_clashes(self):
         clashes = self.pc.calculate_clashes()[0]
-        self.assertEqual(clashes, 2, "Clashes calculation is incorrect.")
+        self.assertEqual(clashes, 3, "Clashes calculation is incorrect.")
 
     def test_calculate_strain_energy(self):
         strain_energy = self.pc.calculate_strain_energy()[0]

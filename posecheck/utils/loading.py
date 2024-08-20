@@ -10,9 +10,11 @@ import openbabel as ob
 import prolif as plf
 import rdkit.Chem as Chem
 from rdkit import Chem
+import tempfile
 
 from posecheck.utils.chem import remove_radicals
 from posecheck.utils.constants import REDUCE_PATH, SPLIT_PATH
+from posecheck.utils.biopython import load_biopython_structure, save_biopython_structure, ids_scriptly_increasing, reorder_ids
 
 
 def load_splits_crossdocked(
@@ -57,15 +59,29 @@ def load_protein_from_pdb(pdb_path: str, reduce_path: str = REDUCE_PATH):
     Returns:
         plf.Molecule: The loaded protein as a prolif.Molecule.
     """
-    tmp_path = pdb_path.split(".pdb")[0] + "_tmp.pdb"
 
-    # Call reduce to make tmp PDB with waters
-    reduce_command = f"{reduce_path} -NOFLIP  {pdb_path} -Quiet > {tmp_path}"
-    subprocess.run(reduce_command, shell=True)
+    tmp_path = tempfile.mkstemp()[1] + ".pdb"
+    tmp_protonated_path = tempfile.mkstemp()[1] + ".pdb"
+
+    # Reorder residue IDs if necessary
+    structure = load_biopython_structure(pdb_path)
+    if not ids_scriptly_increasing(structure):
+        structure = reorder_ids(structure)
+    save_biopython_structure(structure, tmp_path) # Save reordered structure
+
+    # Run Hydrite
+    cmd = f"hydride -i {tmp_path} -o {tmp_protonated_path}"
+    out = subprocess.run(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    # Check if Hydrite failed
+    if out.returncode != 0:
+        print(out.stdout.decode())
+        print(out.stderr.decode())
+        raise Exception("Hydrite failed")
 
     # Load the protein from the temporary PDB file
-    prot = load_protein_prolif(tmp_path)
-    os.remove(tmp_path)
+    prot = load_protein_prolif(tmp_protonated_path)
+    os.remove(tmp_protonated_path)
 
     return prot
 
@@ -191,6 +207,7 @@ if __name__ == "__main__":
     from posecheck.utils.constants import EXAMPLE_LIGAND_PATH, EXAMPLE_PDB_PATH
 
     prot = load_protein_from_pdb(EXAMPLE_PDB_PATH)
+    print(prot)
     lig = load_mols_from_sdf(EXAMPLE_LIGAND_PATH)[0]
 
     mol = dm.read_sdf(EXAMPLE_LIGAND_PATH)[0]
