@@ -43,9 +43,9 @@ class PoseCheck(object):
         self.reduce_path = reduce_path
         self.clash_tolerance = clash_tolerance
         
-        # Check if reduce is installed
-        if not is_reduce_installed(reduce_path):
-            print_reduce_warning()
+        # # Check if reduce is installed
+        # if not is_reduce_installed(reduce_path):
+        #     print_reduce_warning()
 
     def load_protein_from_pdb(self, pdb_path: str) -> None:
         """Load a protein from a PDB file.
