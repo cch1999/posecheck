@@ -39,13 +39,6 @@ cd posecheck
 
 pip install -e .
 pip install -r requirements.txt
-conda install -c mx reduce
-```
-
-Optional
-
-```
-conda install -c conda-forge openbabel
 ```
 
 ## Example usage
