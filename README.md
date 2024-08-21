@@ -9,11 +9,7 @@
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<p align="center">
-  <a href="">
-    <img src="data/posecheck_logo.png" width="800"/>
-  </a>
-</p>
+![PoseCheck Logo](data/posecheck_logo.png)
 
  [Paper](https://arxiv.org/abs/2308.07413) | [Documentation](https://posecheck.readthedocs.io/en/latest/)
 

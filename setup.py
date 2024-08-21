@@ -4,27 +4,8 @@ from setuptools import setup, find_packages
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-long_description = """# PoseCheck: Benchmarking Generated Poses
-
-<p align="center">
-  <a href="">
-    <img src="data/posecheck_logo.png" width="800"/>
-  </a>
-</p>
-
- [Paper](https://arxiv.org/abs/2308.07413) | [Documentation](https://posecheck.readthedocs.io/en/latest/)
-
-## What is PoseCheck?
-
-PoseCheck is a package for analysing the quality of generated protein-ligand complexes from 3D target-conditioned generative models. 
-
-```bash
-git clone https://github.com/cch1999/posecheck.git
-cd posecheck
-
-pip install -e .
-pip install -r requirements.txt
-```"""
+with open('README.md', 'r') as f:
+    long_description = f.read()
 
 setup(
     name="posecheck",
