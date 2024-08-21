@@ -6,3 +6,7 @@ posecheck/utils/__pycache__*
 .vscode/*
 .DS_Store
 *.pyc
+
+build/*
+dist/*
+

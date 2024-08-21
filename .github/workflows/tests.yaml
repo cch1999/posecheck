@@ -38,8 +38,8 @@ jobs:
       #- name: Install PyTorch
       #  run: mamba install -c pytorch pytorch==${{matrix.torch}} cpuonly
       
-      - name: Install Extras
-        run: pip install -r requirements.txt
+      - name: Install package
+        run: pip install .
       
       # - name: Install OpenBabel
       #   run: mamba install -c conda-forge openbabel
