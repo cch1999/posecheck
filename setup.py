@@ -6,7 +6,7 @@ with open('requirements.txt') as f:
 
 setup(
     name="posecheck",
-    version="1.3",
+    version="1.3.1",
     description="A library for pose quality benchmarks",
     author="Charles Harris",
     author_email="cch57@cam.ac.uk",

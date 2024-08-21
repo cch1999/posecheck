@@ -2,7 +2,7 @@
 
 
 [![arXiv](https://img.shields.io/badge/arXiv-2308.07413-b31b1b.svg)](https://arxiv.org/abs/2308.07413)
-![version](https://img.shields.io/badge/version-1.3-blue)
+![version](https://img.shields.io/badge/version-1.3.1-blue)
 [![python](https://img.shields.io/badge/-Python_3.9_%7C_3.10_%7C_3.11-blue?logo=python&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![build](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml/badge.svg?branch=main)](https://github.com/cch1999/posecheck/actions/workflows/tests.yaml)
 [![Documentation Status](https://readthedocs.org/projects/posecheck/badge/?version=latest)](https://posecheck.readthedocs.io/en/latest/?badge=latest)
