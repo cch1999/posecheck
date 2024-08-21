@@ -1,9 +1,9 @@
 # Cheminformatics
-rdkit
-prolif
-datamol
-hydride
-biopython
+rdkit 
+prolif # For working with protein-ligand interactions
+datamol # For working with molecules
+hydride # For adding hydrogens to molecules
+biopython # For fixing broken PDBs
 
 # Data
 pandas==2.0.0
