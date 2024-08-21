@@ -66,8 +66,6 @@ print(f"Interactions of example molecule: {interactions}")
 
 ## Tips
 
-- We use [reduce](https://github.com/rlabduke/reduce) for adding hydrogens to proteins. The default executable path is `reduce` but you can change this using `PoseCheck(reduce_path = "/path/to/reduce")`
-
 - Reading and processing all the PDB files using `reduce` can take a while for a large test set. If you are running `PoseCheck` frequently, it might be worth pre-processing all proteins yourself using `prot = posecheck.utils.loading.load_protein_from_pdb(pdb_path)` and setting this directly within `PoseCheck` using `pc.protein = prot`.
 
 ## Data from the paper
