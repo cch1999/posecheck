@@ -1,6 +1,7 @@
 # Distribution / packaging
 *.egg-info/
 posecheck/__pycache__/*.pyc
+posecheck/utils/__pycache__*
 */*/__pycache__/
 .vscode/*
 .DS_Store
