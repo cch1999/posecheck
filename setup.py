@@ -4,8 +4,10 @@ from setuptools import setup, find_packages
 with open('requirements.txt') as f:
     required = f.read().splitlines()
 
-with open('README.md', 'r') as f:
-    long_description = f.read()
+# with open('README.md', 'r') as f:
+#     long_description = f.read()
+
+long_description = "PoseCheck is a library for benchmarking poses of 3D SBDD models."
 
 setup(
     name="posecheck",
