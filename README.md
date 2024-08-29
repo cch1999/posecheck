@@ -73,7 +73,7 @@ print(f"Interactions of example molecule: {interactions}")
 
 The data for the paper can be found at the following Zenodo link and should be placed in the `data` directory.
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10208912.svg)](https://doi.org/10.5281/zenodo.10208912)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10208912.svg)](https://zenodo.org/records/10208912) 
 
 
 ## Cite
