@@ -6,7 +6,7 @@ hydride # For adding hydrogens to molecules
 biopython # For fixing broken PDBs
 
 # Data
-pandas==2.0.0
+pandas>=2.0.0
 seaborn
 matplotlib
 numpy
